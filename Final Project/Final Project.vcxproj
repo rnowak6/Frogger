@@ -195,6 +195,13 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="background.jpeg" />
+    <Image Include="car1.jpg" />
+    <Image Include="car2.jpeg" />
+    <Image Include="car3.jpeg" />
+    <Image Include="frog.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>
     <VisualStudio>

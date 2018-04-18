@@ -30,4 +30,21 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="frog.jpg">
+      <Filter>src</Filter>
+    </Image>
+    <Image Include="background.jpeg">
+      <Filter>src</Filter>
+    </Image>
+    <Image Include="car1.jpg">
+      <Filter>src</Filter>
+    </Image>
+    <Image Include="car2.jpeg">
+      <Filter>src</Filter>
+    </Image>
+    <Image Include="car3.jpeg">
+      <Filter>src</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
