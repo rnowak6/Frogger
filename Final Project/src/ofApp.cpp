@@ -24,6 +24,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
+	//if game is paused display paused screen
+
+	//if the game has ended display the game over screen
+
 }
 
 /*
@@ -47,26 +51,26 @@ void ofApp::keyPressed(int key){
 	}
 	else if (current_state_ == IN_PROGRESS)
 	{
-		FrogDirection current_direction = game_snake_.getDirection();
+		//get frog direction
 
 		// If current direction has changed to a valid new one, force an immediate update and skip the next frame update
 		if (upper_key == 'W' && current_direction != DOWN && current_direction != UP) {
-			game_snake_.setDirection(UP);
+			game_frog_.setDirection(UP);
 			update();
 			should_update_ = false;
 		}
 		else if (upper_key == 'A' && current_direction != RIGHT && current_direction != LEFT) {
-			game_snake_.setDirection(LEFT);
+			game_frog_.setDirection(LEFT);
 			update();
 			should_update_ = false;
 		}
 		else if ((upper_key == 'S') && current_direction != UP && current_direction != DOWN) {
-			game_snake_.setDirection(DOWN);
+			game_frog_.setDirection(DOWN);
 			update();
 			should_update_ = false;
 		}
 		else if (upper_key == 'D' && current_direction != LEFT && current_direction != RIGHT) {
-			game_snake_.setDirection(RIGHT);
+			game_frog_.setDirection(RIGHT);
 			update();
 			should_update_ = false;
 		}
@@ -74,6 +78,21 @@ void ofApp::keyPressed(int key){
 	else if (upper_key == 'R' && current_state_ == FINISHED) {
 		reset();
 	}
+}
+
+void ofApp::reset() {
+	//resets game
+	//repositions snake and resets timer
+}
+
+void ofApp::displayCars() {
+	//displays cars
+	//keeps them moving continuously
+}
+
+void ofApp::setFrog() {
+	//sets frog at starting position
+	//if user changes keys, move frog in given direction
 }
 
 //--------------------------------------------------------------

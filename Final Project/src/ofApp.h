@@ -47,5 +47,8 @@ private:
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void ofApp::displayCars();
+		void ofApp::setFrog();
+
 		
 };
