@@ -6,3 +6,5 @@ I also have empty images that I will later use in my game once I figure out how 
 them. I created a simple main by using Allegro to generate a window that says "Frogger".
 I know that there is not a lot done but I am currently researching and trying to figure out how to use Allegro. Once that is done, 
 it will be a lot easier for me to start writing actual code for the game.
+
+4/23 I created an image of a road and was able to display it with Allegro. My next step is to create a sprite which would be my frog and be able to display it and eventually move it.
