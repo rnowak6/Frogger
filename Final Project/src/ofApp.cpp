@@ -18,7 +18,7 @@ If the function should update when it is called it will:
 4. Check to see if the frog's new position has resulted in its death and the end of the game
 */
 void ofApp::update(){
-
+	//do as stated in javadoc
 }
 
 //--------------------------------------------------------------
@@ -38,6 +38,7 @@ Function that handles actions based on user key presses
 4. if key == r and game is over reset it
 */
 void ofApp::keyPressed(int key){
+	/**
 	if (key == OF_KEY_F12) {
 		ofToggleFullscreen();
 		return;
@@ -78,6 +79,7 @@ void ofApp::keyPressed(int key){
 	else if (upper_key == 'R' && current_state_ == FINISHED) {
 		reset();
 	}
+	**/
 }
 
 void ofApp::reset() {

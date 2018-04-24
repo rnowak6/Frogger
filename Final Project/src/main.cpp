@@ -1,17 +1,40 @@
-#include "ofMain.h"
-#include "ofApp.h"
+#include <stdio.h>
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_image.h>
 
-int main()
-{
-	al_init();
-	al_init_font_addon();
-	ALLEGRO_DISPLAY* display = al_create_display(800, 600);
-	ALLEGRO_FONT* font = al_create_builtin_font();
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-	al_draw_text(font, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTER, "Frogger");
+#define BACKGROUND_FILE     "background.jpg"
+int main(void) {
+
+	ALLEGRO_DISPLAY *display = NULL;
+	ALLEGRO_BITMAP  *background = NULL;
+	if (!al_init()) {
+		fprintf(stderr, "failed to initialize allegro!\n");
+		return -1;
+	}
+	al_init_image_addon();//should check for errors
+
+	display = al_create_display(640, 480);
+	if (!display) {
+		fprintf(stderr, "failed to create display!\n");
+		return -2;
+	}
+
+	background = al_load_bitmap(BACKGROUND_FILE);
+	if (!background)
+	{
+		fprintf(stderr, "failed to load background bitmap!\n");
+		return -3;
+	}
+	al_draw_bitmap(background, 0, 0, 0);
+
 	al_flip_display();
-	al_rest(5.0);
+
+	al_rest(2.0);
+
+	while (1) {}
+
+	al_destroy_display(display);
+	al_destroy_bitmap(background);
+	al_uninstall_system();
 	return 0;
 }

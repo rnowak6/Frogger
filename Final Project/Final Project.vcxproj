@@ -71,6 +71,10 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <Allegro_AddonImage>true</Allegro_AddonImage>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonColor>false</Allegro_AddonColor>
+    <Allegro_AddonVideo>true</Allegro_AddonVideo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>bin\</OutDir>
@@ -78,6 +82,10 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <Allegro_AddonImage>true</Allegro_AddonImage>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonColor>false</Allegro_AddonColor>
+    <Allegro_AddonVideo>true</Allegro_AddonVideo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\</OutDir>
@@ -196,7 +204,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="background.jpeg" />
+    <Image Include="..\..\Project1\Project1\background.jpg" />
     <Image Include="car1.jpg" />
     <Image Include="car2.jpeg" />
     <Image Include="car3.jpeg" />

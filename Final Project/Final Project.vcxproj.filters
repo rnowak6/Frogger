@@ -15,6 +15,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{73f2c9a8-a832-495e-adcc-1ed1bb4ede72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -31,19 +34,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="frog.jpg">
-      <Filter>src</Filter>
-    </Image>
-    <Image Include="background.jpeg">
-      <Filter>src</Filter>
-    </Image>
-    <Image Include="car1.jpg">
-      <Filter>src</Filter>
+    <Image Include="car3.jpeg">
+      <Filter>Resource Files</Filter>
     </Image>
     <Image Include="car2.jpeg">
-      <Filter>src</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="car3.jpeg">
+    <Image Include="car1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="frog.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\Project1\Project1\background.jpg">
       <Filter>src</Filter>
     </Image>
   </ItemGroup>
