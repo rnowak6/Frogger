@@ -34,16 +34,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="frog.jpg">
-      <Filter>src</Filter>
-    </Image>
-    <Image Include="car2.jpeg">
-      <Filter>src</Filter>
-    </Image>
-    <Image Include="car1.jpg">
-      <Filter>src</Filter>
-    </Image>
     <Image Include="..\..\Project1\Project1\background.jpg">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="frog.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="carright.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="carleft.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>

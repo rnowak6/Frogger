@@ -205,9 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Project1\Project1\background.jpg" />
-    <Image Include="car1.jpg" />
-    <Image Include="car2.jpeg" />
-    <Image Include="frog.jpg" />
+    <Image Include="carleft.png" />
+    <Image Include="carright.png" />
+    <Image Include="frog.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>
