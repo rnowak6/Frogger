@@ -7,12 +7,17 @@
 
 #define BACKGROUND_FILE "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\background.jpg"
 #define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
+#define RIGHT_CAR    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carright.png"
+#define LEFT_CAR "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carleft.png"
+
 
 int main() {
 
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_BITMAP  *background = NULL;
 	ALLEGRO_BITMAP  *frog = NULL;
+	ALLEGRO_BITMAP  *right_car = NULL;
+	ALLEGRO_BITMAP *left_car = NULL;
 	//will be used later to initialize screen
 	bool done = false;
 	bool draw = true;
@@ -34,6 +39,8 @@ int main() {
 
 	background = al_load_bitmap(BACKGROUND_FILE);
 	frog = al_load_bitmap(FROG_FILE);
+	right_car = al_load_bitmap(RIGHT_CAR);
+	left_car = al_load_bitmap(LEFT_CAR);
 
 	if (!background)
 	{
@@ -44,7 +51,11 @@ int main() {
 	//initializes sprite placement
 	float x = 60;
 	float y = 100;
-	float direction = 5;
+	float direction = 1;
+	float carax = -300;
+	float caray = 100;
+	float carbx = 600;
+	float carby = 0;
 
 	al_install_keyboard();
 	al_init_image_addon();
@@ -58,8 +69,31 @@ int main() {
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 
+	while (!done) {
+		if (carax > 600) {
+			carax = -300;
+		}
+		else {
+			carax++;
+		}
+
+		if (carbx < -300) {
+			carbx = 600;
+		}
+		else {
+			carbx--;
+		}
+		if (draw) {
+			al_draw_bitmap(background, 0, 0, 0);
+			al_draw_bitmap(frog, x, y, NULL);
+			al_draw_bitmap(right_car, carax, caray, NULL);
+			al_draw_bitmap(left_car, carbx, carby, NULL);
+			al_flip_display();
+		}
+	}
+
 	while (!done)
-	{
+	{ 
 		ALLEGRO_EVENT events;
 		al_wait_for_event(event_queue, &events);
 		al_get_keyboard_state(&keyState);
@@ -70,6 +104,21 @@ int main() {
 		//controls the movements of the sprite
 		else {
 			active = true;
+
+			if (carax > 600) {
+				carax = -300;
+			}
+			else {
+				carax++;
+			}
+
+			if (carbx < -300) {
+				carbx = 600;
+			}
+			else {
+				carbx--;
+			}
+
 			if (al_key_down(&keyState, ALLEGRO_KEY_DOWN)) {
 				y += direction;
 			}
@@ -93,6 +142,8 @@ int main() {
 		if (draw) {
 			al_draw_bitmap(background, 0, 0, 0);
 			al_draw_bitmap(frog, x, y, NULL);
+			al_draw_bitmap(right_car, carax, caray, NULL);
+			al_draw_bitmap(left_car, carbx, carby, NULL);
 			al_flip_display();
 		}
 	}
