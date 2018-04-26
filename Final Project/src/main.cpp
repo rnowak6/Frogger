@@ -6,7 +6,7 @@
 #include <allegro5/allegro_native_dialog.h>
 
 #define BACKGROUND_FILE "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\background.jpg"
-#define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.jpg"
+#define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
 
 int main() {
 
@@ -92,7 +92,7 @@ int main() {
 		//creates the background and the sprite
 		if (draw) {
 			al_draw_bitmap(background, 0, 0, 0);
-			//al_draw_bitmap(frog, x, y, NULL);
+			al_draw_bitmap(frog, x, y, NULL);
 			al_flip_display();
 		}
 	}
