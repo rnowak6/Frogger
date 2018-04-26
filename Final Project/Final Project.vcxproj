@@ -73,7 +73,7 @@
     <GenerateManifest>true</GenerateManifest>
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonFont>true</Allegro_AddonFont>
-    <Allegro_AddonColor>false</Allegro_AddonColor>
+    <Allegro_AddonColor>true</Allegro_AddonColor>
     <Allegro_AddonVideo>true</Allegro_AddonVideo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -84,7 +84,7 @@
     <GenerateManifest>true</GenerateManifest>
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonFont>true</Allegro_AddonFont>
-    <Allegro_AddonColor>false</Allegro_AddonColor>
+    <Allegro_AddonColor>true</Allegro_AddonColor>
     <Allegro_AddonVideo>true</Allegro_AddonVideo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -207,7 +207,6 @@
     <Image Include="..\..\Project1\Project1\background.jpg" />
     <Image Include="car1.jpg" />
     <Image Include="car2.jpeg" />
-    <Image Include="car3.jpeg" />
     <Image Include="frog.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
