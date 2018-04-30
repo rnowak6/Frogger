@@ -51,7 +51,7 @@ int main() {
 	//initializes sprite placement
 	float x = 60;
 	float y = 100;
-	float direction = 1;
+	float direction = 7;
 	float carax = -300;
 	float caray = 100;
 	float carbx = 600;
@@ -68,7 +68,7 @@ int main() {
 
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
-
+	/**
 	while (!done) {
 		if (carax > 600) {
 			carax = -300;
@@ -91,7 +91,7 @@ int main() {
 			al_flip_display();
 		}
 	}
-
+	**/
 	while (!done)
 	{ 
 		ALLEGRO_EVENT events;
@@ -105,31 +105,38 @@ int main() {
 		else {
 			active = true;
 
-			if (carax > 600) {
-				carax = -300;
-			}
-			else {
-				carax++;
-			}
-
-			if (carbx < -300) {
-				carbx = 600;
-			}
-			else {
-				carbx--;
-			}
-
 			if (al_key_down(&keyState, ALLEGRO_KEY_DOWN)) {
-				y += direction;
+				if (y > 260) {
+					y = 260;
+				}
+				else {
+					y += direction;
+				}
+				
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_UP)) {
-				y -= direction;
+				if (y < -170) {
+					y = -170;
+				}
+				else {
+					y -= direction;
+				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_RIGHT)) {
-				x += direction;
+				if (x > 430) {
+					x = 430;
+				}
+				else {
+					x += direction;
+				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_LEFT)) {
-				x -= direction;
+				if (x < -150) {
+					x = -150;
+				}
+				else {
+					x -= direction;
+				}
 			}
 			else {
 				active = false;

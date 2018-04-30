@@ -4,9 +4,6 @@
 sets up game
 */
 void ofApp::setup(){
-	ofSetWindowTitle("Frogger");
-
-	srand(static_cast<unsigned>(time(0))); // Seed random with current time
 }
 
 /*
@@ -38,48 +35,7 @@ Function that handles actions based on user key presses
 4. if key == r and game is over reset it
 */
 void ofApp::keyPressed(int key){
-	/**
-	if (key == OF_KEY_F12) {
-		ofToggleFullscreen();
-		return;
-	}
-
-	int upper_key = toupper(key); // Standardize on upper case
-
-	if (upper_key == 'P' && current_state_ != FINISHED) {
-		// Pause or unpause
-		current_state_ = (current_state_ == IN_PROGRESS) ? PAUSED : IN_PROGRESS;
-	}
-	else if (current_state_ == IN_PROGRESS)
-	{
-		//get frog direction
-
-		// If current direction has changed to a valid new one, force an immediate update and skip the next frame update
-		if (upper_key == 'W' && current_direction != DOWN && current_direction != UP) {
-			game_frog_.setDirection(UP);
-			update();
-			should_update_ = false;
-		}
-		else if (upper_key == 'A' && current_direction != RIGHT && current_direction != LEFT) {
-			game_frog_.setDirection(LEFT);
-			update();
-			should_update_ = false;
-		}
-		else if ((upper_key == 'S') && current_direction != UP && current_direction != DOWN) {
-			game_frog_.setDirection(DOWN);
-			update();
-			should_update_ = false;
-		}
-		else if (upper_key == 'D' && current_direction != LEFT && current_direction != RIGHT) {
-			game_frog_.setDirection(RIGHT);
-			update();
-			should_update_ = false;
-		}
-	}
-	else if (upper_key == 'R' && current_state_ == FINISHED) {
-		reset();
-	}
-	**/
+	
 }
 
 void ofApp::reset() {
