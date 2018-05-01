@@ -1,5 +1,6 @@
 #include "ofMain.h"
 #include "ofApp.h"
+
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -9,6 +10,68 @@
 #define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
 #define RIGHT_CAR    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carright.png"
 #define LEFT_CAR "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carleft.png"
+
+using namespace std;
+class Frog {
+private:
+	int x, y, speed;
+public:
+	Frog::Frog() {
+		x = 150;
+		y = 260;
+		speed = 1;
+	}
+	int getX() {
+		return x;
+	}
+	int getY() {
+		return y;
+	}
+	int getSpeed() {
+		return speed;
+	}
+	void setX(int newX) {
+		x = newX;
+	}
+	void setY(int newY) {
+		y = newY;
+	}
+};
+
+class Car {
+private:
+	int x, y;
+	bool facing_right;
+public:
+	Car::Car(int newX, int newY, bool direction) {
+		x = newX;
+		y = newY;
+		facing_right = direction;
+	}
+	int getX() {
+		return x;
+	}
+	int getY() {
+		return y;
+	}
+	bool getDirection(){
+		return facing_right;
+	}
+	void setX(int newX) {
+		x = newX;
+	}
+	void setY(int newY) {
+		y = newY;
+	}
+	void setDirection(bool is_facing_right) {
+		facing_right = is_facing_right;
+	}
+};
+
+
+void checkIfTouching(int carx, int cary, int frogx, int frogy) {
+	
+}
 
 
 int main() {
@@ -49,9 +112,7 @@ int main() {
 	}
 
 	//initializes sprite placement
-	float x = 60;
-	float y = 100;
-	float direction = 7;
+	Frog moving_frog;
 	float carax = -300;
 	float caray = 100;
 	float carbx = 600;
@@ -68,8 +129,9 @@ int main() {
 
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
-	/**
-	while (!done) {
+	
+	while (!done)
+	{ 
 		if (carax > 600) {
 			carax = -300;
 		}
@@ -83,76 +145,60 @@ int main() {
 		else {
 			carbx--;
 		}
-		if (draw) {
-			al_draw_bitmap(background, 0, 0, 0);
-			al_draw_bitmap(frog, x, y, NULL);
-			al_draw_bitmap(right_car, carax, caray, NULL);
-			al_draw_bitmap(left_car, carbx, carby, NULL);
-			al_flip_display();
-		}
-	}
-	**/
-	while (!done)
-	{ 
+		
 		ALLEGRO_EVENT events;
-		al_wait_for_event(event_queue, &events);
+		al_get_next_event(event_queue, &events);
 		al_get_keyboard_state(&keyState);
 
-		if (events.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-			done = true;
-		}
 		//controls the movements of the sprite
-		else {
-			active = true;
+			int frog_x = moving_frog.getX();
+			int frog_y = moving_frog.getY();
+			int frog_speed = moving_frog.getSpeed();
 
 			if (al_key_down(&keyState, ALLEGRO_KEY_DOWN)) {
-				if (y > 260) {
-					y = 260;
+				if (frog_y > 260) {
+					moving_frog.setY(260);
 				}
 				else {
-					y += direction;
+					moving_frog.setY(frog_y + frog_speed);
 				}
-				
+				 
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_UP)) {
-				if (y < -170) {
-					y = -170;
+				if (frog_y < -170) {
+					moving_frog.setY(-170);
 				}
 				else {
-					y -= direction;
+					moving_frog.setY(frog_y - frog_speed);
 				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_RIGHT)) {
-				if (x > 430) {
-					x = 430;
+				if (frog_x > 430) {
+					moving_frog.setX(430);
 				}
 				else {
-					x += direction;
+					moving_frog.setX(frog_x + frog_speed);
 				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_LEFT)) {
-				if (x < -150) {
-					x = -150;
+				if (frog_x < -150) {
+					moving_frog.setX(-150);
 				}
 				else {
-					x -= direction;
+					moving_frog.setX(frog_x - frog_speed);
 				}
 			}
 			else {
-				active = false;
+				 done = false;
 			}
 
-			draw = true;
-		}
 
 		//creates the background and the sprite
-		if (draw) {
-			al_draw_bitmap(background, 0, 0, 0);
-			al_draw_bitmap(frog, x, y, NULL);
-			al_draw_bitmap(right_car, carax, caray, NULL);
-			al_draw_bitmap(left_car, carbx, carby, NULL);
-			al_flip_display();
-		}
+		al_draw_bitmap(background, 0, 0, 0);
+		al_draw_bitmap(frog, moving_frog.getX(), moving_frog.getY(), NULL);
+		al_draw_bitmap(right_car, carax, caray, NULL);
+		al_draw_bitmap(left_car, carbx, carby, NULL);
+		al_flip_display();
 	}
 
 	//throws it into a while loop so it doesn't immediately close

@@ -1,3 +1,11 @@
+#include "Frog.h"
+
+float x;
+float y;
+float speed;
+
+using namespace std;
+
 //create a frog constructor
 
 //check if frog was hit by a car

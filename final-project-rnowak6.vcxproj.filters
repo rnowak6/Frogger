@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\Player.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\src\ofxBasicSoundPlayer.cpp">
+			<Filter>addons\ofxBasicSoundPlayer-master\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\src\ofxSoundFile.cpp">
+			<Filter>addons\ofxBasicSoundPlayer-master\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\src\audiodecoderbase.cpp">
+			<Filter>addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\src\audiodecodermediafoundation.cpp">
+			<Filter>addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxBaseGui.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxButton.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGuiGroup.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxLabel.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxPanel.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.cpp">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master">
+			<UniqueIdentifier>{8E182EAB-0B5F-6AF5-6F0D-ED73}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master\src">
+			<UniqueIdentifier>{2EBA2F3D-5D83-15AC-9038-6105}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master\libs">
+			<UniqueIdentifier>{2268B8FE-EA29-C9D1-2460-B4B0}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder">
+			<UniqueIdentifier>{3D0D372A-C4B8-8EC0-07D5-9A16}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include">
+			<UniqueIdentifier>{0EF3D53E-AE22-B928-ACA2-5627}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\src">
+			<UniqueIdentifier>{AFAF4C71-106F-023F-146D-C89A}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxGui">
+			<UniqueIdentifier>{4F2A59AF-5F4E-704B-D067-EC13}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxGui\src">
+			<UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\src\ofxBasicSoundPlayer.h">
+			<Filter>addons\ofxBasicSoundPlayer-master\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\src\ofxSoundFile.h">
+			<Filter>addons\ofxBasicSoundPlayer-master\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include\audiodecoder.h">
+			<Filter>addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include\audiodecoderbase.h">
+			<Filter>addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include\audiodecodermediafoundation.h">
+			<Filter>addons\ofxBasicSoundPlayer-master\libs\libaudiodecoder\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxBaseGui.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxButton.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGui.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGuiGroup.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxLabel.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxPanel.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\Downloads\of_v0.9.8_vs_release\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.h">
+			<Filter>addons\ofxGui\src</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>
