@@ -1,10 +1,11 @@
 #include "ofMain.h"
 #include "ofApp.h"
-
+#include <allegro5/allegro_font.h>
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_native_dialog.h>
+
 
 #define BACKGROUND_FILE "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\background.jpg"
 #define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
@@ -69,9 +70,57 @@ public:
 };
 
 
-void checkIfTouching(int carx, int cary, int frogx, int frogy) {
-	
+void gameOverDisplay(bool game_over) {
+	if (game_over) {
+		al_init();
+		al_init_font_addon();
+		ALLEGRO_DISPLAY* display = al_create_display(200, 200);
+		ALLEGRO_FONT* font = al_create_builtin_font();
+		al_draw_text(font, al_map_rgb(0, 0, 0), 400, 300, ALLEGRO_ALIGN_CENTER, "Game over!");
+		al_flip_display();
+		al_rest(5.0);
+	}
 }
+
+bool checkIfTouching(Car car, Frog frog) {
+	int carx = car.getX();
+	int cary = car.getY();
+	int frogx = frog.getX();
+	int frogy = frog.getY();
+
+	if (frogx == carx && frogy == cary) {
+		gameOverDisplay(true);
+	}
+	else if (frogx + 10 == carx && frogy + 10 == cary) {
+		gameOverDisplay(true);
+	}
+	else {
+		gameOverDisplay(false);
+	}
+	return false;
+}
+
+
+void ofApp::playFrogSound() {
+	ofSoundPlayer   mySound;
+	mySound.load("hop.wav");
+	cout << mySound.isLoaded();
+	ofSoundSetVolume(1.0);
+	mySound.play();
+}
+/**
+void playGameOverSound() {
+	ofSoundPlayer   mySound;
+	mySound.load("gameover");
+	mySound.play();
+}
+
+void playGameWonSound() {
+	ofSoundPlayer   mySound;
+	mySound.load("gamewon");
+	mySound.play();
+}
+**/
 
 
 int main() {
@@ -86,6 +135,10 @@ int main() {
 	bool draw = true;
 	bool active = false;
 
+	ofSoundPlayer   mySound;
+	mySound.load("hop.wav");
+	ofSoundSetVolume(1.0);
+
 	if (!al_init()) {
 		fprintf(stderr, "failed to initialize allegro!\n");
 		return -1;
@@ -95,28 +148,18 @@ int main() {
 
 	display = al_create_display(640, 480);
 
-	if (!display) {
-		fprintf(stderr, "failed to create display!\n");
-		return -2;
-	}
-
 	background = al_load_bitmap(BACKGROUND_FILE);
 	frog = al_load_bitmap(FROG_FILE);
 	right_car = al_load_bitmap(RIGHT_CAR);
 	left_car = al_load_bitmap(LEFT_CAR);
 
-	if (!background)
-	{
-		fprintf(stderr, "failed to load background bitmap!\n");
-		return -3;
-	}
 
 	//initializes sprite placement
 	Frog moving_frog;
-	float carax = -300;
-	float caray = 100;
-	float carbx = 600;
-	float carby = 0;
+	Car right_car_1 = Car(-300, 100, true);
+	Car left_car_1 = Car(600, 0, false);
+	Car right_car_2 = Car(-700, 100, true);
+	Car right_car_3 = Car(-1100, 100, true);
 
 	al_install_keyboard();
 	al_init_image_addon();
@@ -131,19 +174,46 @@ int main() {
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	
 	while (!done)
-	{ 
-		if (carax > 600) {
-			carax = -300;
+	{
+		int ax = right_car_1.getX();
+		int ax2 = right_car_2.getX();
+		int ax3 = right_car_3.getX();
+		int bx = left_car_1.getX();
+
+		if (ax > 800) {
+			right_car_1.setX(-300);
+			//checkIfTouching(right_car_1, moving_frog);
 		}
 		else {
-			carax++;
+			ax++;
+			right_car_1.setX(ax);
+			//checkIfTouching(right_car_1, moving_frog);
 		}
 
-		if (carbx < -300) {
-			carbx = 600;
+		if (ax2 > 800) {
+			right_car_2.setX(-300);
+			//checkIfTouching(right_car_2, moving_frog);
 		}
 		else {
-			carbx--;
+			ax2++;
+			right_car_2.setX(ax2);
+		}
+		if (ax3 > 800) {
+			right_car_3.setX(-300);
+			//checkIfTouching(right_car_2, moving_frog);
+		}
+		else {
+			ax3++;
+			right_car_3.setX(ax3);
+		}
+
+		if (bx < -300) {
+			left_car_1.setX(600);
+			checkIfTouching(left_car_1, moving_frog);
+		}
+		else {
+			left_car_1.setX(bx - 1);
+			checkIfTouching(left_car_1, moving_frog);
 		}
 		
 		ALLEGRO_EVENT events;
@@ -156,6 +226,7 @@ int main() {
 			int frog_speed = moving_frog.getSpeed();
 
 			if (al_key_down(&keyState, ALLEGRO_KEY_DOWN)) {
+				mySound.play();
 				if (frog_y > 260) {
 					moving_frog.setY(260);
 				}
@@ -165,6 +236,7 @@ int main() {
 				 
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_UP)) {
+				//ofApp::playFrogSound();
 				if (frog_y < -170) {
 					moving_frog.setY(-170);
 				}
@@ -173,6 +245,7 @@ int main() {
 				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_RIGHT)) {
+				//playFrogSound();
 				if (frog_x > 430) {
 					moving_frog.setX(430);
 				}
@@ -181,6 +254,7 @@ int main() {
 				}
 			}
 			else if (al_key_down(&keyState, ALLEGRO_KEY_LEFT)) {
+				//playFrogSound();
 				if (frog_x < -150) {
 					moving_frog.setX(-150);
 				}
@@ -196,8 +270,10 @@ int main() {
 		//creates the background and the sprite
 		al_draw_bitmap(background, 0, 0, 0);
 		al_draw_bitmap(frog, moving_frog.getX(), moving_frog.getY(), NULL);
-		al_draw_bitmap(right_car, carax, caray, NULL);
-		al_draw_bitmap(left_car, carbx, carby, NULL);
+		al_draw_bitmap(right_car, right_car_1.getX(), right_car_1.getY(), NULL);
+		al_draw_bitmap(right_car, right_car_2.getX(), right_car_2.getY(), NULL);
+		al_draw_bitmap(right_car, right_car_3.getX(), right_car_3.getY(), NULL);
+		al_draw_bitmap(left_car, left_car_1.getX(), left_car_1.getY(), NULL);
 		al_flip_display();
 	}
 

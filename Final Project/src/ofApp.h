@@ -51,4 +51,6 @@ private:
 		void ofApp::setFrog();
 
 		
+		static void playFrogSound();
+
 };
