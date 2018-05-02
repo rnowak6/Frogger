@@ -1,9 +1,12 @@
 #include "ofMain.h"
 #include "ofApp.h"
+#include "..\Frog.h"
+#include "..\gameState.h"
 #include <allegro5/allegro_font.h>
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_native_dialog.h>
 
 
@@ -11,35 +14,11 @@
 #define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
 #define RIGHT_CAR    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carright.png"
 #define LEFT_CAR "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carleft.png"
+
+gameState game;
+
+
 bool done = false;
-
-using namespace std;
-class Frog {
-private:
-	int x, y, speed;
-public:
-	Frog::Frog() {
-		x = 150;
-		y = 260;
-		speed = 1;
-	}
-	int getX() {
-		return x;
-	}
-	int getY() {
-		return y;
-	}
-	int getSpeed() {
-		return speed;
-	}
-	void setX(int newX) {
-		x = newX;
-	}
-	void setY(int newY) {
-		y = newY;
-	}
-};
-
 class Car {
 private:
 	int x, y;
@@ -70,66 +49,18 @@ public:
 	}
 };
 
+void checkIfTouching(Car car, Frog frog) {
+	al_init_primitives_addon();
+	al_draw_rectangle(frog.getX() - 5, frog.getY() - 5, 5, 5, al_map_rgb(255, 255, 255), 2.0);
 
-void gameOverDisplay(bool game_over) {
-	al_init();
-	al_init_font_addon();
-	ALLEGRO_DISPLAY* display = al_create_display(800, 600);
-	ALLEGRO_FONT* font = al_create_builtin_font();
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-	al_draw_text(font, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTER, "You lost!");
-	al_flip_display();
-	al_rest(5.0);
+	ofRectangle frog_rect(frog.getX() - 5, frog.getY() -5, 5 , 5);
+	ofRectangle car_rect(car.getX()-5, car.getY()-5, 5, 5);
+	game.gameOverDisplay();
+	//gameOverDisplay(frog_rect.intersects(car_rect));
 }
-
-void wonGame() {
-	al_init();
-	al_init_font_addon();
-	ALLEGRO_DISPLAY* display = al_create_display(200, 200);
-	ALLEGRO_FONT* font = al_create_builtin_font();
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-	al_draw_text(font, al_map_rgb(255, 255, 255), 100, 100, ALLEGRO_ALIGN_CENTER, "You win!");
-	al_flip_display();
-	al_rest(5.0);
-	done = true;
-}
-
-
-bool checkIfTouching(Car car, Frog frog) {
-	int carx = car.getX();
-	int cary = car.getY();
-	int frogx = frog.getX();
-	int frogy = frog.getY();
-
-	if (frogx == carx && frogy == cary) {
-		gameOverDisplay(true);
-	}
-	else if (frogx + 10 == carx && frogy + 10 == cary) {
-		gameOverDisplay(true);
-	}
-	else {
-		gameOverDisplay(false);
-	}
-	return false;
-}
-
-/**
-void playGameOverSound() {
-	ofSoundPlayer   mySound;
-	mySound.load("gameover");
-	mySound.play();
-}
-
-void playGameWonSound() {
-	ofSoundPlayer   mySound;
-	mySound.load("gamewon");
-	mySound.play();
-}
-**/
 
 
 int main() {
-
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_BITMAP  *background = NULL;
 	ALLEGRO_BITMAP  *frog = NULL;
@@ -161,12 +92,16 @@ int main() {
 
 
 	//initializes sprite placement
-	Frog moving_frog;
+	Frog moving_frog = Frog::Frog();
 	Car right_car_1 = Car(-300, 100, true);
-	Car right_car_2 = Car(-700, 100, true);
-	Car right_car_3 = Car(-1100, 100, true);
+	Car right_car_2 = Car(-900, 100, true);
+	Car right_car_3 = Car(-400, 250, true);
+	Car right_car_4 = Car(-1000, 250, true);
 	Car left_car_1 = Car(600, 0, false);
 	Car left_car_2 = Car(200, 0, false);
+	Car left_car_3 = Car(500, 300, false);
+	Car left_car_4 = Car(200, 300, false);
+
 
 	al_install_keyboard();
 	al_init_image_addon();
@@ -185,22 +120,37 @@ int main() {
 		int ax = right_car_1.getX();
 		int ax2 = right_car_2.getX();
 		int ax3 = right_car_3.getX();
+		int ax4 = right_car_4.getX();
 		int bx = left_car_1.getX();
 		int bx2 = left_car_2.getX();
+		int bx3 = left_car_3.getX();
+		int bx4 = left_car_4.getX();
+
+		/**
+		checkIfTouching(right_car_1, moving_frog);
+		checkIfTouching(right_car_2, moving_frog);
+		checkIfTouching(right_car_3, moving_frog);
+		checkIfTouching(right_car_4, moving_frog);
+		checkIfTouching(left_car_1, moving_frog);
+		checkIfTouching(left_car_2, moving_frog);
+		checkIfTouching(left_car_3, moving_frog);
+		checkIfTouching(left_car_4, moving_frog);
+		**/
+		al_init_primitives_addon();
+		al_draw_rectangle(moving_frog.getX() - 5, moving_frog.getY() - 5, 5, 5, al_map_rgb(255, 255, 255), 2.0);
+
+
 
 		if (ax > 800) {
 			right_car_1.setX(-300);
-			//checkIfTouching(right_car_1, moving_frog);
 		}
 		else {
 			ax++;
 			right_car_1.setX(ax);
-			//checkIfTouching(right_car_1, moving_frog);
 		}
 
 		if (ax2 > 800) {
 			right_car_2.setX(-300);
-			//checkIfTouching(right_car_2, moving_frog);
 		}
 		else {
 			ax2++;
@@ -208,31 +158,47 @@ int main() {
 		}
 		if (ax3 > 800) {
 			right_car_3.setX(-300);
-			//checkIfTouching(right_car_2, moving_frog);
 		}
 		else {
 			ax3++;
 			right_car_3.setX(ax3);
 		}
+		if (ax4 > 800) {
+			right_car_4.setX(-300);
+		}
+		else {
+			ax4++;
+			right_car_4.setX(ax4);
+		}
 
 		if (bx < -300) {
 			left_car_1.setX(600);
-			//checkIfTouching(left_car_1, moving_frog);
 		}
 		else {
 			bx--;
 			left_car_1.setX(bx);
-			//checkIfTouching(left_car_1, moving_frog);
 		}
 
 		if (bx2 < -300) {
 			left_car_2.setX(600);
-			//checkIfTouching(left_car_1, moving_frog);
 		}
 		else {
 			bx2--;
 			left_car_2.setX(bx2);
-			//checkIfTouching(left_car_1, moving_frog);
+		}
+		if (bx3 < -300) {
+			left_car_3.setX(600);
+		}
+		else {
+			bx3--;
+			left_car_3.setX(bx3);
+		}
+		if (bx4 < -300) {
+			left_car_4.setX(600);
+		}
+		else {
+			bx4--;
+			left_car_4.setX(bx2);
 		}
 		
 		//************************************FROG****************************//
@@ -296,8 +262,11 @@ int main() {
 		al_draw_bitmap(right_car, right_car_1.getX(), right_car_1.getY(), NULL);
 		al_draw_bitmap(right_car, right_car_2.getX(), right_car_2.getY(), NULL);
 		al_draw_bitmap(right_car, right_car_3.getX(), right_car_3.getY(), NULL);
+		al_draw_bitmap(right_car, right_car_4.getX(), right_car_4.getY(), NULL);
 		al_draw_bitmap(left_car, left_car_1.getX(), left_car_1.getY(), NULL);
 		al_draw_bitmap(left_car, left_car_2.getX(), left_car_2.getY(), NULL);
+		al_draw_bitmap(left_car, left_car_3.getX(), left_car_3.getY(), NULL);
+		al_draw_bitmap(left_car, left_car_4.getX(), left_car_4.getY(), NULL);
 		al_flip_display();
 	}
 
