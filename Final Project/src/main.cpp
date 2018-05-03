@@ -41,11 +41,11 @@ public:
 	int getSpeed() {
 		return speed;
 	}
-	void setX(int newX) {
-		x = newX;
+	void setX(int new_x) {
+		x = new_x;
 	}
-	void setY(int newY) {
-		y = newY;
+	void setY(int new_y) {
+		y = new_y;
 	}
 };
 
@@ -59,9 +59,9 @@ private:
 	int x, y;
 	bool facing_right;
 public:
-	Car(int newX, int newY, bool direction) {
-		x = newX;
-		y = newY;
+	Car(int new_x, int new_y, bool direction) {
+		x = new_x;
+		y = new_y;
 		facing_right = direction;
 	}
 	int getX() {
@@ -73,11 +73,11 @@ public:
 	bool getDirection() {
 		return facing_right;
 	}
-	void setX(int newX) {
-		x = newX;
+	void setX(int new_x) {
+		x = new_x;
 	}
-	void setY(int newY) {
-		y = newY;
+	void setY(int new_y) {
+		y = new_y;
 	}
 	void setDirection(bool is_facing_right) {
 		facing_right = is_facing_right;
