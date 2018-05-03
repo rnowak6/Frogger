@@ -1,3 +1,4 @@
+#pragma once
 #include "ofMain.h"
 #include "ofApp.h"
 #include <allegro5/allegro_font.h>
@@ -7,8 +8,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_native_dialog.h>
 #include "main.h"
-
-
+//loads file path of images
 #define BACKGROUND_FILE "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\background.jpg"
 #define FROG_FILE    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\frog.png"
 #define RIGHT_CAR    "C:\\Users\\Rose\\source\\repos\\final-project-rnowak6\\Final Project\\resources\\carright.png"
@@ -20,8 +20,9 @@ ALLEGRO_BITMAP  *frog = NULL;
 ALLEGRO_BITMAP  *right_car = NULL;
 ALLEGRO_BITMAP *left_car = NULL;
 
-#pragma once
-
+/**
+Creates a frog object to simplify the code
+**/
 class Frog {
 private:
 	int x, y, speed;
@@ -48,6 +49,11 @@ public:
 	}
 };
 
+
+/**
+Created a Car object to cut down on repeated methods. The Car object holds the coordinate of the car and 
+if the car is facing right because if it isnt then it's facing right which mean we know the direction of the car
+**/
 class Car {
 private:
 	int x, y;
@@ -91,7 +97,7 @@ Car left_car_4 = Car(200, 300, false);
 bool done = false;
 
 void load() {
-
+	//reloads to sprite placements
 	moving_frog = Frog();
 	right_car_1 = Car(-300, 100, true);
 	right_car_2 = Car(-900, 100, true);
@@ -106,16 +112,18 @@ void load() {
 	bool active = false;
 	bool done = false;
 
-
+	//makes sure allegro was initialized properly
 	if (!al_init()) {
 		fprintf(stderr, "failed to initialize allegro!\n");
 		return;
 	}
 
 	al_init_image_addon();
-
+	
+	//creates images
 	display = al_create_display(640, 480);
 
+	//loads images
 	background = al_load_bitmap(BACKGROUND_FILE);
 	frog = al_load_bitmap(FROG_FILE);
 	right_car = al_load_bitmap(RIGHT_CAR);
@@ -123,6 +131,7 @@ void load() {
 }
 
 
+//displays game over and plays the game over sound
 void gameOverDisplay() {
 		ofSoundPlayer lost;
 		lost.load("gameover.wav");
@@ -132,25 +141,28 @@ void gameOverDisplay() {
 		al_init_font_addon();
 		ALLEGRO_DISPLAY* display = al_create_display(200, 200);
 		ALLEGRO_FONT* font = al_create_builtin_font();
-		al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_clear_to_color(al_map_rgb(105, 105, 105));
 		al_draw_text(font, al_map_rgb(255, 255, 255), 100, 100, ALLEGRO_ALIGN_CENTER, "You lost!");
 		al_flip_display();
+		//leaves it up for 20 seconds
 		al_rest(20.0);
 }
 
+
+//displays a win and plays a song for the winner
 void wonGame() {
 	al_init();
 	al_init_font_addon();
-	ALLEGRO_DISPLAY* display = al_create_display(300, 300);
+	ALLEGRO_DISPLAY* display = al_create_display(200, 200);
 	ALLEGRO_FONT* font = al_create_builtin_font();
 	al_clear_to_color(al_map_rgb(105, 105, 105));
-	al_draw_text(font, al_map_rgb(255, 255, 255), 150, 100, ALLEGRO_ALIGN_CENTER, "You win!");
+	al_draw_text(font, al_map_rgb(255, 255, 255), 100, 100, ALLEGRO_ALIGN_CENTER, "You win!");
 	al_flip_display();
 	al_rest(10.0);
 }
 
 
-
+//helper function to check for collision by making rectangles for collision detection
 bool checkCollision(int frogx, int frogy, int frogw, int frogh, int carx, int cary, int carw, int carh){
 	//credit to Allegro tutorial for collision
 	if ((frogx > carx + carw - 1) || (frogy > cary + carh - 1) || (carx > frogx + frogw - 1) ||
@@ -161,6 +173,7 @@ bool checkCollision(int frogx, int frogy, int frogw, int frogh, int carx, int ca
 	return true;
 }
 
+//Checks if the frog is being hit by a car and if it is, it calls the game over function because the frog is dead
 void checkIfTouching(Car car, Frog frog) {
 	int frogx = frog.getX();
 	int frogy = frog.getY();
@@ -176,6 +189,7 @@ void checkIfTouching(Car car, Frog frog) {
 }
 
 
+//Simpler function that moves cars instead of doing it individually. It moves it accordingly based on the direction of the car
 int moveCar(Car car) {
 	if (car.getDirection()) {
 		if (car.getX() > 800) {
@@ -204,9 +218,10 @@ int moveCar(Car car) {
 }
 
 int main() {
-
+	//loads the game
 	load();
 	
+	//loads the sound effects
 	ofSoundPlayer  hop;
 	ofSoundPlayer win;
 	win.load("gamewon.wav");
@@ -227,6 +242,7 @@ int main() {
 
 	while (!done)
 	{
+		//moves cars
 		right_car_1.setX(moveCar(right_car_1));
 		right_car_2.setX(moveCar(right_car_2));
 		right_car_3.setX(moveCar(right_car_3));
@@ -235,6 +251,7 @@ int main() {
 		left_car_2.setX(moveCar(left_car_2));
 		left_car_3.setX(moveCar(left_car_3));
 		left_car_4.setX(moveCar(left_car_4));
+
 		//************************************FROG****************************//
 		//credit to CodingMadeEasy
 		ALLEGRO_EVENT events;
@@ -246,6 +263,7 @@ int main() {
 		int frog_y = moving_frog.getY();
 		int frog_speed = moving_frog.getSpeed();
 
+		//moves the frog accordingly
 		if (al_key_down(&keyState, ALLEGRO_KEY_DOWN)) {
 			hop.play();
 			if (frog_y > 260) {
@@ -290,7 +308,7 @@ int main() {
 		}
 
 
-		//creates the background and the sprite
+		//draws all the objects on the screen
 		al_draw_bitmap(background, 0, 0, 0);
 		al_draw_bitmap(frog, moving_frog.getX(), moving_frog.getY(), NULL);
 		al_draw_bitmap(right_car, right_car_1.getX(), right_car_1.getY(), NULL);
