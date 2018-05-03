@@ -184,8 +184,10 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\catch.hpp" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\ofApp.h" />
   </ItemGroup>
@@ -209,6 +211,9 @@
     <Image Include="..\..\Project1\Project1\carleft.png" />
     <Image Include="..\..\Project1\Project1\carright.png" />
     <Image Include="..\..\Project1\Project1\frog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

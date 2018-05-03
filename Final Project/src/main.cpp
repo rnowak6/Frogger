@@ -26,7 +26,7 @@ class Frog {
 private:
 	int x, y, speed;
 public:
-	Frog::Frog() {
+	Frog() {
 		x = 150;
 		y = 260;
 		speed = 1;
@@ -79,7 +79,7 @@ public:
 };
 
 //initializes sprite placement
-Frog moving_frog = Frog::Frog();
+Frog moving_frog = Frog();
 Car right_car_1 = Car(-300, 100, true);
 Car right_car_2 = Car(-900, 100, true);
 Car right_car_3 = Car(-400, 250, true);
@@ -92,7 +92,7 @@ bool done = false;
 
 void load() {
 
-	moving_frog = Frog::Frog();
+	moving_frog = Frog();
 	right_car_1 = Car(-300, 100, true);
 	right_car_2 = Car(-900, 100, true);
 	right_car_3 = Car(-400, 250, true);
@@ -135,7 +135,7 @@ void gameOverDisplay() {
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_text(font, al_map_rgb(255, 255, 255), 100, 100, ALLEGRO_ALIGN_CENTER, "You lost!");
 		al_flip_display();
-		al_rest(5.0);
+		al_rest(20.0);
 }
 
 void wonGame() {
@@ -145,32 +145,16 @@ void wonGame() {
 	ALLEGRO_FONT* font = al_create_builtin_font();
 	al_clear_to_color(al_map_rgb(105, 105, 105));
 	al_draw_text(font, al_map_rgb(255, 255, 255), 150, 100, ALLEGRO_ALIGN_CENTER, "You win!");
-	al_draw_text(font, al_map_rgb(255, 255, 255), 150, 150, ALLEGRO_ALIGN_CENTER, "Press r to restart or f to finish");
 	al_flip_display();
 	al_rest(10.0);
-
-	ALLEGRO_EVENT_QUEUE *event_queue;
-	ALLEGRO_EVENT event;
-
-	al_install_keyboard();
-	event_queue = al_create_event_queue();
-	al_register_event_source(event_queue, al_get_keyboard_event_source());
-
-	al_wait_for_event(event_queue, &event);
-
-	if (event.type == 'r') {
-		done = false;
-	}
-	else if (event.type == 'f') {
-		done = true;
-	}
 }
 
-bool checkCollision(int b1_x, int b1_y, int b1_w, int b1_h, int b2_x, int b2_y, int b2_w, int b2_h){
-	if ((b1_x > b2_x + b2_w - 1) ||
-		(b1_y > b2_y + b2_h - 1) ||
-		(b2_x > b1_x + b1_w - 1) ||
-		(b2_y > b1_y + b1_h - 1))
+
+
+bool checkCollision(int frogx, int frogy, int frogw, int frogh, int carx, int cary, int carw, int carh){
+	//credit to Allegro tutorial for collision
+	if ((frogx > carx + carw - 1) || (frogy > cary + carh - 1) || (carx > frogx + frogw - 1) ||
+		(cary > frogy + frogh - 1))
 	{
 		return false;
 	}
@@ -180,19 +164,47 @@ bool checkCollision(int b1_x, int b1_y, int b1_w, int b1_h, int b2_x, int b2_y, 
 void checkIfTouching(Car car, Frog frog) {
 	int frogx = frog.getX();
 	int frogy = frog.getY();
-	int frogw = 50;
-	int frogh = 10;
+	int frogw = 30;
+	int frogh = 7;
 	int carx = car.getX();
 	int cary = car.getY();
-	int carw = 50;
-	int carh = 10;
+	int carw = 30;
+	int carh = 8;
 	if (checkCollision(frogx, frogy, frogw, frogh, carx, cary, carw, carh)) {
 		gameOverDisplay();
 	}
 }
 
 
+int moveCar(Car car) {
+	if (car.getDirection()) {
+		if (car.getX() > 800) {
+			car.setX(-300);
+			return -300;
+		}
+		else {
+			int new_x = car.getX() + 1;
+			car.setX(new_x);
+			checkIfTouching(car, moving_frog);
+			return new_x;
+		}
+	}
+	else {
+		if (car.getX() < -300) {
+			car.setX(600);
+			return 600;
+		}
+		else {
+			int new_x = car.getX() - 1;
+			car.setX(new_x);
+			checkIfTouching(car, moving_frog);
+			return new_x;
+		}
+	}
+}
+
 int main() {
+
 	load();
 	
 	ofSoundPlayer  hop;
@@ -215,92 +227,16 @@ int main() {
 
 	while (!done)
 	{
-		int ax = right_car_1.getX();
-		int ax2 = right_car_2.getX();
-		int ax3 = right_car_3.getX();
-		int ax4 = right_car_4.getX();
-		int bx = left_car_1.getX();
-		int bx2 = left_car_2.getX();
-		int bx3 = left_car_3.getX();
-		int bx4 = left_car_4.getX();
-
-	
-		checkIfTouching(right_car_1, moving_frog);
-		checkIfTouching(right_car_2, moving_frog);
-		checkIfTouching(right_car_3, moving_frog);
-		checkIfTouching(right_car_4, moving_frog);
-		checkIfTouching(left_car_1, moving_frog);
-		checkIfTouching(left_car_2, moving_frog);
-		checkIfTouching(left_car_3, moving_frog);
-		checkIfTouching(left_car_4, moving_frog);
-		
-		al_init_primitives_addon();
-		al_draw_rectangle(moving_frog.getX() - 5, moving_frog.getY() - 5, 5, 5, al_map_rgb(255, 255, 255), 2.0);
-
-
-
-		if (ax > 800) {
-			right_car_1.setX(-300);
-		}
-		else {
-			ax++;
-			right_car_1.setX(ax);
-		}
-
-		if (ax2 > 800) {
-			right_car_2.setX(-300);
-		}
-		else {
-			ax2++;
-			right_car_2.setX(ax2);
-		}
-		if (ax3 > 800) {
-			right_car_3.setX(-300);
-		}
-		else {
-			ax3++;
-			right_car_3.setX(ax3);
-		}
-		if (ax4 > 800) {
-			right_car_4.setX(-300);
-		}
-		else {
-			ax4++;
-			right_car_4.setX(ax4);
-		}
-
-		if (bx < -300) {
-			left_car_1.setX(600);
-		}
-		else {
-			bx--;
-			left_car_1.setX(bx);
-		}
-
-		if (bx2 < -300) {
-			left_car_2.setX(600);
-		}
-		else {
-			bx2--;
-			left_car_2.setX(bx2);
-		}
-		if (bx3 < -300) {
-			left_car_3.setX(600);
-		}
-		else {
-			bx3--;
-			left_car_3.setX(bx3);
-		}
-		if (bx4 < -300) {
-			left_car_4.setX(600);
-		}
-		else {
-			bx4--;
-			left_car_4.setX(bx2);
-		}
-
+		right_car_1.setX(moveCar(right_car_1));
+		right_car_2.setX(moveCar(right_car_2));
+		right_car_3.setX(moveCar(right_car_3));
+		right_car_4.setX(moveCar(right_car_4));
+		left_car_1.setX(moveCar(left_car_1));
+		left_car_2.setX(moveCar(left_car_2));
+		left_car_3.setX(moveCar(left_car_3));
+		left_car_4.setX(moveCar(left_car_4));
 		//************************************FROG****************************//
-
+		//credit to CodingMadeEasy
 		ALLEGRO_EVENT events;
 		al_get_next_event(event_queue, &events);
 		al_get_keyboard_state(&keyState);

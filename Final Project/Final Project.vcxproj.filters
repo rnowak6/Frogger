@@ -7,6 +7,9 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -21,6 +24,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\catch.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -41,5 +47,10 @@
     <Image Include="..\..\Project1\Project1\frog.png">
       <Filter>Resources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>src</Filter>
+    </Text>
   </ItemGroup>
 </Project>
