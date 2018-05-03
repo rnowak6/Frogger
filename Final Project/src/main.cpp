@@ -163,10 +163,10 @@ void wonGame() {
 
 
 //helper function to check for collision by making rectangles for collision detection
-bool checkCollision(int frogx, int frogy, int frogw, int frogh, int carx, int cary, int carw, int carh){
+bool checkCollision(int frog_x, int frog_y, int frog_w, int frog_h, int car_x, int car_y, int car_w, int car_h){
 	//credit to Allegro tutorial for collision
-	if ((frogx > carx + carw - 1) || (frogy > cary + carh - 1) || (carx > frogx + frogw - 1) ||
-		(cary > frogy + frogh - 1))
+	if ((frog_x > car_x + car_w - 1) || (frog_y > car_y + car_h - 1) || (car_x > frog_x + frog_w - 1) ||
+		(car_y > frog_y + frog_h - 1))
 	{
 		return false;
 	}
@@ -175,15 +175,16 @@ bool checkCollision(int frogx, int frogy, int frogw, int frogh, int carx, int ca
 
 //Checks if the frog is being hit by a car and if it is, it calls the game over function because the frog is dead
 void checkIfTouching(Car car, Frog frog) {
-	int frogx = frog.getX();
-	int frogy = frog.getY();
-	int frogw = 30;
-	int frogh = 7;
-	int carx = car.getX();
-	int cary = car.getY();
-	int carw = 30;
-	int carh = 8;
-	if (checkCollision(frogx, frogy, frogw, frogh, carx, cary, carw, carh)) {
+	int frog_x = frog.getX();
+	int frog_y = frog.getY();
+	int frog_w = 30;
+	int frog_h = 7;
+	int car_x = car.getX();
+	int car_y = car.getY();
+	int car_w = 30;
+	int car_h = 8;
+
+	if (checkCollision(frog_x, frog_y, frog_w, frog_h, car_x, car_y, car_w, car_h)) {
 		gameOverDisplay();
 	}
 }
@@ -191,6 +192,7 @@ void checkIfTouching(Car car, Frog frog) {
 
 //Simpler function that moves cars instead of doing it individually. It moves it accordingly based on the direction of the car
 int moveCar(Car car) {
+
 	if (car.getDirection()) {
 		if (car.getX() > 800) {
 			car.setX(-300);
